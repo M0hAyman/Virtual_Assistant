@@ -236,8 +236,7 @@ def say(command):
 def main():
     # l="C:\\Users\Hp\Downloads\Team_1_Report (1).pdf".split('\\')
     # print(l)
-    listDir('C:\\')
-    listDir('D:\\')
+    
     say('Hello, I am your Windows assistant')
     say('How can I help?')
     # while(True):
@@ -258,6 +257,8 @@ def call_visualizer():
 
 if __name__=="__main__":
 #    #gui 
+   listDir('C:\\')
+   listDir('D:\\')
    root=tk.Tk()
    root.title('windows assistant')
    root.geometry("{}x{}+{}+{}".format(745,360,int(root.winfo_screenmmwidth()/2-745/2),int(root.winfo_screenheight()/2-360/2)))
@@ -277,4 +278,5 @@ if __name__=="__main__":
    #user_name = Label(root,text = "Username",padx=400,pady=100).place(x = 10,   y = 10)
    visualizer_button=tk.Button(root,text="visualizer",borderwidth=0,activebackground='white',background='white',command=call_visualizer)
    visualizer_button.place(x=325,y=225)
+   
    root.mainloop()
