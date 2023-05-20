@@ -2,6 +2,7 @@ import speech_recognition as sr
 import pyttsx3 as T2S
 import os
 import subprocess  # how ->search in chrome
+import webbrowser
 
 # open -> open application
 All_EXE_lnk_Directories = []
@@ -93,7 +94,23 @@ def openApp(app, assistant):  # Tested apps passed: chrome,vlc,teams,notion,note
 def Actions(command, assistant):
     command = str(command).split()
     try:
-        if 'find' in command:
+        if ('chat gpt' in command) or ("chat gbt" in command) or ("gpt" in command) or ("gbt" in command):
+            webbrowser.open("https://poe.com/ChatGPT")
+
+        elif 'how' in command:
+            query = " ".join(command)  # Join all the words
+            url = f"https://www.google.com/search?q={query}"
+            webbrowser.open(url)
+
+        elif 'play' in command:
+            # What_to_play=command.split('play')[-1]
+            # # query = " ".join(What_to_play)
+            # url = f"https://www.youtube.com/results?search_query={lstrip(What_to_play)}"
+            # webbrowser.open(url)
+            query = "".join(command[1:])  # Join all the words except the first one
+            url = f"https://www.youtube.com/results?search_query={query}"
+            webbrowser.open(url)
+        elif 'find' in command:
             # searching_for = command[command.index('find') + 1]
             searching_for = command[-1]
 
@@ -126,13 +143,9 @@ def Actions(command, assistant):
             else:
                 say("Confirmation failed repeat what you said again")
 
-        elif 'play' in command:
-            # Insert your code here
-            pass  # delete this
 
-        elif 'how' in command:
-            # Insert your code here
-            pass  # delete this
+
+
         else:
             # print("Else innn")
             say('did not understand command')
@@ -141,11 +154,11 @@ def Actions(command, assistant):
         # print("went in actions exception")
 
 
-def show(List):
-    for ele in List:
-        if ".lnk" in ele:
-            print(ele)
-    # print(len(List))
+# def show(List):
+#     for ele in List:
+#         if ".lnk" in ele:
+#             print(ele)
+#     # print(len(List))
 
 
 def listDir(dir):  # Recusive fn to get the path of every executable file on the PC and append it to All_EXE_Directories List
